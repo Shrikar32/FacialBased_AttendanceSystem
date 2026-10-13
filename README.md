@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Flask delete endpoint
+
+Install the Python dependency with `pip install -r requirements.txt`, then run `python app/api.py` to start the checked-in Flask delete endpoint on `127.0.0.1:5000`.
+
+The route expects `data/attendance.db` with an `attendance` table containing a `roll_number` column, plus reference images named `<PRN>.<extension>` in `data/dataset`. Deleting a student also removes matching attendance rows and all `representations_*.pkl` files in that dataset directory.
+
+This repository does not contain the other Flask endpoints used by the scanner (`/recognize`, `/register`, and `/records`). If those are provided by a separate Flask app, merge the delete route into that app rather than running this standalone module alongside it.
+
 ## Getting Started
 
 First, run the development server:
