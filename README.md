@@ -35,18 +35,32 @@ This project is an automated, lightweight Facial Recognition Attendance System d
 
 ## Installation
 1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/face-attendance-system.git](https://github.com/YOUR_USERNAME/face-attendance-system.git)
+   ```powershell
+   git clone https://github.com/YOUR_USERNAME/face-attendance-system.git
    cd face-attendance-system
+   ```
 
-   ----- HOW TO RUN -----
+2. Set up the environment and launch the desktop GUI:
+   ```powershell
    python -m venv .venv
-# Windows:
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python run.py
+   .\.venv\Scripts\Activate.ps1
+   python -m pip install -r requirements.txt
+   python run.py
+   ```
 
-System Workflow
+## Web Frontend API
+
+The desktop GUI (`run.py`) and the web frontend API are separate processes. To use the web scanner, attendance logs, and delete action, start the API from the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe app\database.py
+.\.venv\Scripts\python.exe app\api.py
+```
+
+The API listens on `http://127.0.0.1:5000` and provides `POST /register`, `POST /recognize`, `GET /records`, and `DELETE /delete/<prn>`. Keep it running while using the frontend. Restart it after changing the API code.
+
+## System Workflow
 1. Registration
 Click [ REGISTER STUDENT ]. The system prompts for a PRN and Name. A webcam window opens with a bounding box guide. Pressing c captures the frame, saves the image to data/faces/, and logs the student details in the SQLite database.
 

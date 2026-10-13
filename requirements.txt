@@ -3,3 +3,5 @@ deepface
 mediapipe
 pandas
 tf-keras
+Flask
+flask-cors
